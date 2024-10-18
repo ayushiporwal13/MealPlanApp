@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Meal Plan App</title>
+        <style>
+            body {
+                font-family: 'Helvetica', sans-serif;
+                line-height: 1.6;
+                margin: 0;
+                padding: 20px;
+                background-color: #ffffff;
+                color: #333;
+            }
+            header {
+                background: #444;
+                color: #ffffff;
+                padding: 10px 0;
+                text-align: center;
+            }
+            h1,
+            h2,
+            h3 {
+                color: #444;
+            }
+            section {
+                margin-bottom: 20px;
+                padding: 15px;
+                background: #f9f9f9;
+                border-radius: 5px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+            footer {
+                text-align: center;
+                margin-top: 20px;
+                padding: 10px 0;
+                background: #444;
+                color: #ffffff;
+            }
+            code {
+                font-family: 'Courier New', Courier, monospace;
+                background: #f1f1f1;
+                padding: 2px 5px;
+                border-radius: 5px;
+                color: #333;
+            }
+        </style>
+    </head>
+    <body>
+        <main>
+            <section id="models">
+                <h2>Models</h2>
+                <p>
+                    Create at least one Guest object with required fields and at least one MovieWatchlist object with
+                    the required fields.
+                </p>
+                <h3>Guests</h3>
+                <p>The Guests data model stores guest account information.</p>
+                <ul>
+                    <li>
+                        <strong><code>_id</code></strong
+                        >: A unique identifier for each guest.
+                    </li>
+                    <li>
+                        <strong><code>username</code></strong
+                        >: The username of the guest.
+                    </li>
+                    <li>
+                        <strong><code>password</code></strong
+                        >: The password for the guest account.
+                    </li>
+                    <li>
+                        <strong><code>movie_watchlist</code></strong
+                        >: An array containing the _ids of items in MovieWatchlist.
+                    </li>
+                </ul>
+                <hr />
+                <h3>MovieWatchlist</h3>
+                <p>The MovieWatchlist data model stores information about each movie in the watchlist.</p>
+                <ul>
+                    <li>
+                        <strong><code>_id</code></strong
+                        >: A unique identifier for each movie entry.
+                    </li>
+                    <li>
+                        <strong><code>status</code></strong
+                        >: The status of the movie ('Watched', 'Pending').
+                    </li>
+                    <li>
+                        <strong><code>movie</code></strong
+                        >: An object containing details about the movie, which includes:
+                        <ul>
+                            <li>
+                                <strong><code>title</code></strong
+                                >: The title of the movie.
+                            </li>
+                            <li>
+                                <strong><code>genre</code></strong
+                                >: The genre of the movie.
+                            </li>
+                            <li>
+                                <strong><code>image</code></strong
+                                >: The image or poster of the movie.
+                            </li>
+                            <li>
+                                <strong><code>movie_id</code></strong
+                                >: The unique TMDB API ID for the movie.
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+
+            <section id="api-endpoints">
+                <h2>API Endpoints</h2>
+                <p>
+                    Design and implement the following endpoints in your Node.js Application.  These endpoints must follow REST principles, including proper use of HTTP methods, resource naming, status codes and appropriate URL structures for path and query parameters.
+                </p>
+
+                <h3>Users</h3>
+                <ul>
+                    <li>
+                        <strong><code>Register a new user account</code></strong
+                        >
+                        <li>Requires a unique username and password</li>
+                        <li> Optionally allows specifying dietary preferences</li>
+                    </li>
+                    
+                    <li>
+                        <strong><code>Login a user</code></strong
+                        >: Validates that the username and password match
+                    </li>
+                    <li>
+                        <strong><code>Retrieve user information by id</code></strong
+                        >: Returns user info (excluding password) and includes all associated meal plans for that user
+                    </li>
+                    <li>
+                        <strong><code>Update user preferences by id</code></strong
+                        >: Allows user to update only their dietary preferences
+                    </li>
+                </ul>
+
+                <h3>Meal Plans</h3>
+                <ul>
+                    <li>
+                        <strong><code>Add a new meal plan and/or add meal to existing plan for a user</code></strong
+                        >: Allows guest to create a new watchlist. Allows guest to add a movie to watched using search
+                        results from the TMDB API.
+                    </li>
+                    <li>
+                        <strong><code>Update status of watchlist movie</code></strong
+                        >: Update the status of a specific movie entry in the watchlist by id.
+                    </li>
+                    <li>
+                        <strong><code>Delete watchlist movie</code></strong
+                        >: Delete a movie entry from the watchlist by id.
+                    </li>
+                </ul>
+                <h3>Movies</h3>
+                <ul>
+                    <li>
+                        <strong><code>Search for movies by keyword</code></strong
+                        >: Search the TMDB API by keyword.
+                    </li>
+                    <li>
+                        <strong><code>Retrieve popular movies</code></strong
+                        >: Get current popular movies from TMDB API.
+                    </li>
+                    <li>
+                        <strong><code>Retrieve movie recommendations based on guest watchlist</code></strong
+                        >: Get movie recommendations from TMDB API based on a movie id from the guest's movie watchlist.
+                    </li>
+                </ul>
+            </section>
+
+            <section id="api-interaction">
+                <h2>Interaction with TMDB API</h2>
+                <p>
+                    The application will interact with the TMDB API to search for movies, get popular movies and get
+                    recommendations based on a guest's movie watchlist.
+                </p>
+                <p>Guests can add movies returned from the API to their watchlist.</p>
+                <a href="https://www.themoviedb.org/documentation/api" target="_blank">TMDB API Documentation</a>
+            </section>
+        </main>
+    </body>
+</html>

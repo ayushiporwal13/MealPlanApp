@@ -1,0 +1,23 @@
+{
+  "name": "meal-plan-app",
+  "version": "1.0.0",
+  "description": "An app to plan and organize your meals",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "start": "npx nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ayushi Porwal",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.7.7",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.0",
+    "jsonwebtoken": "^9.0.2",
+    "moongose": "^1.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7"
+  }
+}
