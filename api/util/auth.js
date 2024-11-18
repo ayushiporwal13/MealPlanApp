@@ -1,11 +1,12 @@
+/* eslint-disable no-undef */
 import { scrypt, randomBytes, timingSafeEqual } from "crypto";
-import jwt from 'jsonwebtoken';
+import jwt from "jsonwebtoken";
 
 // command to create jwt secret key
-// node -e "console.log(require('crypto').randomBytes(16).toString('hex'))"
+// node -e "console.log(require('crypto').randomBytes(16).toString("hex"))"
 const KEYLEN = 32;
 
-const JWT_SECRET = process.env.JWT_SECRET
+const JWT_SECRET = process.env.JWT_SECRET;
 
 const hash = async (password) => {
   return new Promise((resolve, reject) => {
@@ -23,9 +24,9 @@ const hash = async (password) => {
   });
 };
 
-const compare = async (password, dbSaltHash) => {
+const compare = async (password, dbPassword) => {
   return new Promise((resolve, reject) => {
-    const [salt, hash] = dbSaltHash.split(":");
+    const [salt, hash] = dbPassword.split(":");
 
     const hashBuffer = Buffer.from(hash, "hex");
 
@@ -41,21 +42,18 @@ const compare = async (password, dbSaltHash) => {
 };
 
 //encrypt
-const signToken = (user) => {
-    try{
-        return jwt.sign(user, JWT_SECRET, {expiresIn: '24h'});
-    } catch (error){
-        return error;
-    }
+const signToken = (username, _id) => {
+  const user = { username, user_id: _id };
+  return jwt.sign(user, JWT_SECRET, { expiresIn: "24h" });
 };
 
 //decrypt
 const verifyToken = (token) => {
-    try{
-        return jwt.verify(token, JWT_SECRET);
-    } catch(error){
-        return error;
-    }
-}
+  try {
+      return jwt.verify(token, JWT_SECRET);
+  } catch (error) {
+      return error;
+  }
+};
 
-export { hash, compare, signToken, verifyToken};
+export { hash, compare, signToken, verifyToken };
