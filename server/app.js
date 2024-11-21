@@ -1,5 +1,6 @@
 /* eslint-disable no-undef */
 import "dotenv/config";
+import cors from "cors";
 import express from "express";
 import mongoDB from "./db/connection.js";
 
@@ -10,7 +11,11 @@ import mealplans from "./api/routes/mealplan.js";
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+const options = {exposedHeader: ["Authorization"]};
+app.use(cors(options));
+
 app.use(express.json());
+
 app.use("/meals", meals);
 app.use("/users", users);
 app.use("/mealplans", mealplans);
