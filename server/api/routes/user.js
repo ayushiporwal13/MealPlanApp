@@ -11,7 +11,7 @@ router.post("/register", UserController.registerUser);
 router.post("/login", UserController.loginUser);
 
 // GET /users/:id
-router.get("/:id", verifyUser, UserController.getUserById);
+router.get("/:id", verifyUser, UserController.getUserMealPlanById);
 
 // PUT /users/:id
 router.put("/:id", verifyUser, UserController.updateUser);

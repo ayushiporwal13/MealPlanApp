@@ -20,12 +20,11 @@ const DIETS = [
 
 const searchMeals = async (req, res) => {
   try {
-    const { meal, diets } = req.query;
-    // const _id = (req.headers.user_id);
+    const meal = req.query.query;
+    const { diets } = req.query;
     const { user_id } = req.verified;
 
-    const user = User.findById(user_id);
-    // console.log('user', user);
+    const user = await User.findById(user_id);
     if (!user) {
       return res.status(404).json({ error: "User not found" });
     }
@@ -47,6 +46,10 @@ const searchMeals = async (req, res) => {
         addRecipeInformation: true,
       },
     });
+
+    if (!meals.data.results || meals.data.results.length === 0) {
+      return res.status(404).json({ error: "No meals found for the given query." });
+    }
 
     res.json(meals.data.results);
   } catch (error) {

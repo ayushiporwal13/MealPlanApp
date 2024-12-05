@@ -6,7 +6,6 @@ import User from "../models/user.js";
 const verifyUser = async ( req, res, next) => {
     const { authorization } = req.headers;
 
-    // console.log('I am at authorization middleware');
     try {
         if (!authorization){
             return res.status(401).json({ error: "Unauthorized : no token provided" });
@@ -19,21 +18,18 @@ const verifyUser = async ( req, res, next) => {
         }
 
         const verified = verifyToken(token);
-        // console.log('verified', verified);
 
         if (!verified){
             return res.status(401).json({ error: 'Unauthorized: token is invalid or expired' });
         }
 
-        const exists = await User.exists({ _id: verified.username.user_id });
-        // console.log('exists', exists);
+        const exists = await User.exists({ _id: verified.user_id });
         if (!exists){
             return res.status(404).json({ error: 'User not found' });
         }
 
-        req.verified = verified.username;
+        req.verified = verified;
 
-        // console.log('req', req);
         // pass control to the next middleware or to route handler
         next();
 
