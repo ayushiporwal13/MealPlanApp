@@ -96,18 +96,13 @@ const getUserMealPlanById = async (req, res) => {
     }
 
     if (week) {
-      const mealPlan = userWithMealPlan.user_mealplans.find(
-        (mp) => mp.week === week
-      );
-      if (!mealPlan) {
+      const mealPlan = await User.find({_id: id}).populate({ path: "user_mealplans", match: { week: week } }).select("-password");
+      if (!mealPlan[0].user_mealplans || mealPlan[0].user_mealplans.length === 0) {
         return res
           .status(404)
           .json({ error: `No meal plan found for week ${week}` });
       }
       return res.json({
-        _id: userWithMealPlan._id,
-        username: userWithMealPlan.username,
-        preferences: userWithMealPlan.preferences,
         mealPlan: mealPlan,
       });
     }
