@@ -57,4 +57,8 @@ const searchMeals = async (req, res) => {
   }
 };
 
-export default { searchMeals };
+const fetchPreferences = (req, res) => {
+  res.json(DIETS);
+}
+
+export default { searchMeals, fetchPreferences };
