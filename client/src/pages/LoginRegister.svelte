@@ -1,25 +1,35 @@
 <script>
   import { navigate } from "svelte-routing";
   import axios from "axios";
+  import { onMount } from "svelte";
 
   let username = $state("");
   let password = $state("");
   let preferences = $state([]);
+  let Preferences = [];
 
   let formType = $state("login");
-  const Preferences = [
-    "Gluten Free",
-    "Ketogenic",
-    "Vegetarian",
-    "Lacto-Vegetarian",
-    "Ovo-Vegetarian",
-    "Vegan",
-    "Pescetarian",
-    "Paleo",
-    "Primal",
-    "Low FODMAP",
-    "Whole30",
-  ];
+
+  onMount(async () => {
+    const response = await axios.get("http://localhost:8080/meals/preferences");
+    
+    // set preferences to the fetched data
+    Preferences = response.data;
+  });
+
+  // const Preferences = [
+  //   "Gluten Free",
+  //   "Ketogenic",
+  //   "Vegetarian",
+  //   "Lacto-Vegetarian",
+  //   "Ovo-Vegetarian",
+  //   "Vegan",
+  //   "Pescetarian",
+  //   "Paleo",
+  //   "Primal",
+  //   "Low FODMAP",
+  //   "Whole30",
+  // ];
 
   // configuration for login and registration forms
   const formConfig = {

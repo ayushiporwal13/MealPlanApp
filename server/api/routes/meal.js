@@ -7,5 +7,6 @@ const router = express.Router();
 
 // GET /meals/search
 router.get("/search", verifyUser, MealsController.searchMeals);
+router.get("/preferences", MealsController.fetchPreferences);
 
 export default router;
