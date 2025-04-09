@@ -13,6 +13,7 @@ const PORT = process.env.PORT || 3000;
 
 const options = {exposedHeader: ["Authorization"]};
 app.use(cors(options));
+// app.use(cors());
 
 app.use(express.json());
 
