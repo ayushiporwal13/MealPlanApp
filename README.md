@@ -3,7 +3,7 @@
 Welcome to the **Meal Plan App**! This application is designed to help users plan their meals efficiently, track their dietary preferences, and simplify their grocery shopping experience.
 
 ## Deployed Application
-You can access the live version of the app here: [Meal Plan App](https://meal-plan-app-swart.vercel.app/account)
+You can access the live version of the app here: [Meal Plan App](meal-plan-app-git-main-ayushi-porwals-projects-7b743680.vercel.app)
 
 ## Features
 - **User Authentication**: Secure login and account management.
