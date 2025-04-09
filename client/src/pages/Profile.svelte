@@ -2,6 +2,7 @@
   import axios from "axios";
   import { onMount } from "svelte";
   import MealCard from "../components/MealCard.svelte";
+  import { API_URL } from "../config";
 
   // props: id passed from route parameter
   let { id } = $props();
@@ -12,7 +13,7 @@
   onMount(async () => {
     try {
       const user = JSON.parse(localStorage.getItem("user"));
-      const response = await axios.get(`http://localhost:8080/users/${id}`, {
+      const response = await axios.get(`${API_URL}/users/${id}`, {
         headers: {
           Authorization: user.header_token,
         },

@@ -2,6 +2,7 @@
   import { navigate } from "svelte-routing";
   import axios from "axios";
   import { onMount } from "svelte";
+  import { API_URL } from "../config";
 
   let username = $state("");
   let password = $state("");
@@ -10,8 +11,10 @@
 
   let formType = $state("login");
 
+
+
   onMount(async () => {
-    const response = await axios.get("http://localhost:8080/meals/preferences");
+    const response = await axios.get(`${API_URL}/meals/preferences`);
     
     // set preferences to the fetched data
     Preferences = response.data;
@@ -52,7 +55,7 @@
 
   const handleSubmit = async () => {
     // set endpoint based on form type (login or register)
-    const endpoint = `http://localhost:8080/users/${formType}`;
+    const endpoint = `${API_URL}/users/${formType}`;
     try {
       // send form data to the server
       const response = await axios.post(endpoint, {
